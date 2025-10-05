@@ -5,25 +5,39 @@
 
 import { Platform } from 'react-native';
 
-const tintColorLight = '#0a7ea4';
-const tintColorDark = '#fff';
 
 export const Colors = {
   light: {
-    text: '#11181C',
-    background: '#fff',
-    tint: tintColorLight,
-    icon: '#687076',
-    tabIconDefault: '#687076',
-    tabIconSelected: tintColorLight,
+    primary: "#8878F4",
+    dark: "#1A1A1A",
+    lightDark: "#262626",
+    accent: "#F97068",
+    background: "#EDF2EF",
+    highlight: "#D1D646",
+    white: "#FFFFFF",
+    lightGrey: "#A0A0A0",
+    grey: "#494949",
+    error: "#FF0000",
+    ethereum: "#C8B3F4",
+    solana: "#00DCFA",
+    primaryLinearGradient: ["#8878F4", "#6155AC"],
+    secondaryLinearGradient: ["#1A1A1A", "#262626"],
   },
   dark: {
-    text: '#ECEDEE',
-    background: '#151718',
-    tint: tintColorDark,
-    icon: '#9BA1A6',
-    tabIconDefault: '#9BA1A6',
-    tabIconSelected: tintColorDark,
+    primary: "#8878F4",
+    dark: "#1A1A1A",
+    lightDark: "#262626",
+    accent: "#F97068",
+    background: "#EDF2EF",
+    highlight: "#D1D646",
+    white: "#FFFFFF",
+    lightGrey: "#A0A0A0",
+    grey: "#494949",
+    error: "#FF0000",
+    ethereum: "#C8B3F4",
+    solana: "#00DCFA",
+    primaryLinearGradient: ["#8878F4", "#6155AC"],
+    secondaryLinearGradient: ["#1A1A1A", "#262626"],
   },
 };
 
