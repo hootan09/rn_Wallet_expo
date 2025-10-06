@@ -10,7 +10,7 @@ import { SafeAreaView } from 'react-native-safe-area-context'
 
 const CreateWallet = () => {
     const router = useRouter();
-    let phrase = ['quarter', 'girl', 'elevator', 'win', 'cover', 'zero', 'cheese', 'fitness', 'joke', 'check', 'angry', 'pumpkin'];
+    const phrase = ['quarter', 'girl', 'elevator', 'win', 'cover', 'zero', 'cheese', 'fitness', 'joke', 'check', 'angry', 'pumpkin'];
 
     const copyToClipboard = async () => {
         await Clipboard.setStringAsync(phrase.join(' '));
@@ -44,7 +44,10 @@ const CreateWallet = () => {
                 <Text style={styles.copyBtnText}>Copy to clipboard</Text>
             </TouchableOpacity>
 
-            <TouchableOpacity style={styles.saveBtnWrapper}>
+            <TouchableOpacity style={styles.saveBtnWrapper} onPress={()=> router.navigate({
+                pathname: '/verifyWallet',
+                params: {phrase: phrase, random: [...phrase].sort(() => Math.random() - 0.5)}
+            })}>
                 <Text style={styles.copyBtnText}>Ok, I saved it</Text>
             </TouchableOpacity>
         </SafeAreaView>
