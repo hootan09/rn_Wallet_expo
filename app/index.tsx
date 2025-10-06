@@ -1,27 +1,29 @@
 import { Colors, Fonts } from "@/constants/theme";
+import Ionicons from '@expo/vector-icons/Ionicons';
 import { LinearGradient } from "expo-linear-gradient";
+import { useRouter } from "expo-router";
 import React, { useEffect } from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import Animated, { ReduceMotion, useAnimatedStyle, useSharedValue, withRepeat, withTiming } from "react-native-reanimated";
 import { SafeAreaView } from 'react-native-safe-area-context';
 
 const WalletSetup = () => {
-
+  const router = useRouter();
   const sv = useSharedValue<number>(0);
 
   useEffect(() => {
     sv.value = withRepeat(
-          // withDelay(
-            // 100,
-            withTiming(50, { duration: 3000 }),
-          // ),
-          -1,   // infinite loop
-          true,  // reverse on each iteration
-          () => {},
-          ReduceMotion.System,
-        )
+      // withDelay(
+      // 100,
+      withTiming(50, { duration: 3000 }),
+      // ),
+      -1,   // infinite loop
+      true,  // reverse on each iteration
+      () => { },
+      ReduceMotion.System,
+    )
   }, [])
-  
+
 
   const animatedStyle = useAnimatedStyle(() => ({
     transform: [
@@ -46,11 +48,24 @@ const WalletSetup = () => {
               animatedStyle,
             ]}
           />
-        <View style={styles.contentWrapper}>
-          <Text style={styles.titleText}>Get Started with Ease</Text>
-          <Text style={styles.subtitleText}>Secure your financial future with a few easy steps. Your
-              decentralized wallet awaits.</Text>
-        </View>
+          <View style={styles.contentWrapper}>
+            <Text style={styles.titleText}>Get Started with Ease</Text>
+            <Text style={styles.subtitleText}>Secure your financial future with a few easy steps. Your decentralized wallet awaits.</Text>
+            
+            <TouchableOpacity style={styles.btnWrapper} onPress={()=> router.navigate('/createWallet')}>
+              <Ionicons name="wallet-outline" size={24} color={Colors.light.white} />
+              <Text style={styles.btnText}>Create Wallet</Text>
+            </TouchableOpacity>
+
+            <View style={styles.importwalletWrapper}>
+              <Text style={styles.importwalletText}>Got a wallet?</Text>
+              <TouchableOpacity>
+                <Text style={styles.importwalletText}>Let's import it</Text>
+              </TouchableOpacity>
+            </View>
+
+          </View>
+
         </Animated.View>
       </SafeAreaView>
     </LinearGradient>
@@ -93,6 +108,38 @@ const styles = StyleSheet.create({
     fontWeight: '400',
     color: Colors.light.white,
     opacity: 0.75,
-    marginTop: 15,
+    marginTop: 8,
+  },
+  btnWrapper: {
+    // flex:1,
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: Colors.light.dark,
+    borderRadius: 12,
+    height: 45,
+    marginTop: 20,
+    flexDirection: 'row',
+    gap: 8,
+  },
+  btnText: {
+    fontFamily: Fonts.rounded,
+    fontSize: 16,
+    lineHeight: 18,
+    fontWeight: '600',
+    color: Colors.light.white,
+  },
+  importwalletWrapper: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'center',
+    marginTop: 20,
+    gap: 4,
+  },
+  importwalletText: {
+    fontFamily: Fonts.rounded,
+    fontSize: 16,
+    lineHeight: 18,
+    fontWeight: '700',
+    color: Colors.light.white,
   },
 })
