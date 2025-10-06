@@ -5,13 +5,14 @@ import MaterialIcons from '@expo/vector-icons/MaterialIcons';
 import * as Clipboard from 'expo-clipboard';
 import { useLocalSearchParams, useRouter } from 'expo-router';
 import React, { useState } from 'react';
-import { StyleSheet, Text, TouchableOpacity, View } from 'react-native';
+import { Alert, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 const VerifyWallet = () => {
     const router = useRouter();
     const { phrase, random } = useLocalSearchParams();
-    
-    const [randomPhrase, setRandomPhrase] = useState(random.split(','))
+    // console.log(random);
+
+    const [randomPhrase, setRandomPhrase] = useState(random?.split(','))
     const [verifyPhrase, setVerifyPhrase] = useState([]);
 
     // const copyToClipboard = async () => {
@@ -24,17 +25,25 @@ const VerifyWallet = () => {
         setRandomPhrase([])
     };
 
-    const onDeleteVerfyPhrase = (text = null) =>{
-        if(text){
+    const onDeleteVerfyPhrase = (text = null) => {
+        if (text) {
             setRandomPhrase([...randomPhrase, text])
             setVerifyPhrase(verifyPhrase.filter(item => item != text))
         }
 
     }
-    const onAddtoVerfyPhrase = (text = null) =>{
-        if(text){
+    const onAddtoVerfyPhrase = (text = null) => {
+        if (text) {
             setVerifyPhrase([...verifyPhrase, text]),
-            setRandomPhrase(randomPhrase.filter(item => item != text))
+                setRandomPhrase(randomPhrase.filter(item => item != text))
+        }
+    }
+
+    const onPressVerify = () => {
+        if (verifyPhrase.join(',') == phrase) {
+            router.navigate('/welcome');
+        } else {
+            Alert.alert("Invalid Phrase!!", "", [], { userInterfaceStyle: 'dark' })
         }
     }
     return (
@@ -51,7 +60,7 @@ const VerifyWallet = () => {
             <View style={[styles.phraseItemWrapper, { justifyContent: 'center', alignItems: 'center' }]}>
                 <View style={[styles.randomPhraseWrapper, { marginTop: 0 }]}>
                     {verifyPhrase.map((item, index) => (
-                        <PhraseButton key={index} id={index} text={item} onPress={()=> onDeleteVerfyPhrase(item)} />
+                        <PhraseButton key={index} id={index} text={item} onPress={() => onDeleteVerfyPhrase(item)} />
                     ))}
                 </View>
             </View>
@@ -62,12 +71,12 @@ const VerifyWallet = () => {
             </TouchableOpacity>
 
             <View style={styles.randomPhraseWrapper}>
-                {randomPhrase.map((item, index) => (
-                    <PhraseButton key={index} id={index} text={item} onPress={()=> onAddtoVerfyPhrase(item)} />
+                {randomPhrase?.map((item, index) => (
+                    <PhraseButton key={index} id={index} text={item} onPress={() => onAddtoVerfyPhrase(item)} />
                 ))}
             </View>
 
-            <TouchableOpacity style={styles.saveBtnWrapper} onPress={() => router.navigate('/verifyWallet')}>
+            <TouchableOpacity style={styles.saveBtnWrapper} onPress={onPressVerify}>
                 <Text style={styles.copyBtnText}>Verify seed phrase</Text>
             </TouchableOpacity>
         </SafeAreaView>

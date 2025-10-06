@@ -10,6 +10,7 @@ export default function RootLayout() {
         <Stack.Screen name="index" options={{ headerShown: false }} />
         <Stack.Screen name="createWallet" options={{ headerShown: false }} />
         <Stack.Screen name="verifyWallet" options={{ headerShown: false }} />
+        <Stack.Screen name="welcome" options={{ headerShown: false }} />
       </Stack>
       <StatusBar style="light" />
     </>

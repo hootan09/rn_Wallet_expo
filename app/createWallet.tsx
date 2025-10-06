@@ -4,7 +4,7 @@ import FontAwesome5 from '@expo/vector-icons/FontAwesome5'
 import Ionicons from '@expo/vector-icons/Ionicons'
 import * as Clipboard from 'expo-clipboard'
 import { useRouter } from 'expo-router'
-import React from 'react'
+import React, { useState } from 'react'
 import { StyleSheet, Text, TouchableOpacity, View } from 'react-native'
 import { SafeAreaView } from 'react-native-safe-area-context'
 
@@ -12,8 +12,10 @@ const CreateWallet = () => {
     const router = useRouter();
     const phrase = ['quarter', 'girl', 'elevator', 'win', 'cover', 'zero', 'cheese', 'fitness', 'joke', 'check', 'angry', 'pumpkin'];
 
+    const [copyText, setCopyText] = useState("Copy to clipboard");
     const copyToClipboard = async () => {
         await Clipboard.setStringAsync(phrase.join(' '));
+        setCopyText('Copied!')
     };
 
     // const fetchCopiedText = async () => {
@@ -41,7 +43,7 @@ const CreateWallet = () => {
 
             <TouchableOpacity style={styles.copyBtnWrapper} onPress={copyToClipboard}>
                 <Ionicons name="copy-outline" size={20} color={Colors.light.white} />
-                <Text style={styles.copyBtnText}>Copy to clipboard</Text>
+                <Text style={styles.copyBtnText}>{copyText}</Text>
             </TouchableOpacity>
 
             <TouchableOpacity style={styles.saveBtnWrapper} onPress={()=> router.navigate({
