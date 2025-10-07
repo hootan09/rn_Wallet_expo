@@ -1,27 +1,43 @@
 import PhraseItemComponent from '@/components/PhraseItemComponent'
 import { Colors, Fonts } from '@/constants/theme'
+import { generateMnemonicList } from '@/utils/utils'
 import FontAwesome5 from '@expo/vector-icons/FontAwesome5'
 import Ionicons from '@expo/vector-icons/Ionicons'
 import * as Clipboard from 'expo-clipboard'
 import { LinearGradient } from 'expo-linear-gradient'
 import { useRouter } from 'expo-router'
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { StyleSheet, Text, TouchableOpacity, View } from 'react-native'
 import { SafeAreaView } from 'react-native-safe-area-context'
 
+global.Buffer = require('buffer').Buffer;
+
 const CreateWallet = () => {
     const router = useRouter();
-    const phrase = ['quarter', 'girl', 'elevator', 'win', 'cover', 'zero', 'cheese', 'fitness', 'joke', 'check', 'angry', 'pumpkin'];
+    const [phrase, setPhrase] = useState<string[]>([]);
 
     const [copyText, setCopyText] = useState("Copy to clipboard");
     const copyToClipboard = async () => {
         await Clipboard.setStringAsync(phrase.join(' '));
-        setCopyText('Copied!')
+        setCopyText('Copied!');        
     };
 
     // const fetchCopiedText = async () => {
     //     const text = await Clipboard.getStringAsync();
     // };
+
+    useEffect(() => {
+      const createdPhrase = generateMnemonicList();
+    //   console.log(createdPhrase);
+    //   console.log(validateMnemonicText(createdPhrase.join(' ')));
+
+    //   const entropy = mnemonicTextToEntropyText(createdPhrase.join(' '))
+    //   console.log(entropy);
+    //   console.log(entropyTextToMnemonicText(entropy));
+      
+      setPhrase(createdPhrase);
+    }, [])
+    
     return (
         <SafeAreaView style={styles.container}>
             <TouchableOpacity style={styles.backBtn} onPress={() => router.back()}>
