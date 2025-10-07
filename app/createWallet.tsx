@@ -3,6 +3,7 @@ import { Colors, Fonts } from '@/constants/theme'
 import FontAwesome5 from '@expo/vector-icons/FontAwesome5'
 import Ionicons from '@expo/vector-icons/Ionicons'
 import * as Clipboard from 'expo-clipboard'
+import { LinearGradient } from 'expo-linear-gradient'
 import { useRouter } from 'expo-router'
 import React, { useState } from 'react'
 import { StyleSheet, Text, TouchableOpacity, View } from 'react-native'
@@ -46,11 +47,16 @@ const CreateWallet = () => {
                 <Text style={styles.copyBtnText}>{copyText}</Text>
             </TouchableOpacity>
 
-            <TouchableOpacity style={styles.saveBtnWrapper} onPress={()=> router.navigate({
+            <TouchableOpacity style={styles.saveBtnWrapper} onPress={() => router.navigate({
                 pathname: '/verifyWallet',
-                params: {phrase: phrase, random: [...phrase].sort(() => Math.random() - 0.5)}
+                params: { phrase: phrase, random: [...phrase].sort(() => Math.random() - 0.5) }
             })}>
-                <Text style={styles.copyBtnText}>Ok, I saved it</Text>
+                <LinearGradient
+                    style={{ flexDirection: 'row', gap: 8, width: '100%', height: '100%', borderRadius: 12, justifyContent: 'center', alignItems: 'center' }}
+                    colors={Colors.light.primaryLinearGradient}
+                >
+                    <Text style={styles.copyBtnText}>Ok, I saved it</Text>
+                </LinearGradient>
             </TouchableOpacity>
         </SafeAreaView>
     )

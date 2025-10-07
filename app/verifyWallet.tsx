@@ -3,6 +3,7 @@ import { Colors, Fonts } from '@/constants/theme';
 import FontAwesome5 from '@expo/vector-icons/FontAwesome5';
 import MaterialIcons from '@expo/vector-icons/MaterialIcons';
 import * as Clipboard from 'expo-clipboard';
+import { LinearGradient } from 'expo-linear-gradient';
 import { useLocalSearchParams, useRouter } from 'expo-router';
 import React, { useState } from 'react';
 import { Alert, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
@@ -77,7 +78,12 @@ const VerifyWallet = () => {
             </View>
 
             <TouchableOpacity style={styles.saveBtnWrapper} onPress={onPressVerify}>
-                <Text style={styles.copyBtnText}>Verify seed phrase</Text>
+                <LinearGradient
+                    style={{ flexDirection: 'row', gap: 8, width: '100%', height: '100%', borderRadius: 12, justifyContent: 'center', alignItems: 'center' }}
+                    colors={Colors.light.primaryLinearGradient}
+                >
+                    <Text style={styles.copyBtnText}>Verify seed phrase</Text>
+                </LinearGradient>
             </TouchableOpacity>
         </SafeAreaView>
     )

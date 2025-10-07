@@ -28,13 +28,13 @@ const ImportWallet = () => {
             </View>
 
 
-            <TouchableOpacity style={styles.btnWrapper} onPress={() => router.navigate('/verifyWallet')}>
+            <TouchableOpacity style={styles.btnWrapper} onPress={() => router.navigate('/recovery')}>
                 <View style={styles.iconBtnWrapper}>
                     <MaterialIcons name="content-paste-go" size={20} color={Colors.light.white} />
                 </View>
                 <View style={styles.textBtnWrapper}>
                     <Text style={styles.btnText}>Import Secret Recovery Phrase</Text>
-                    <Text style={[styles.btnText, {fontSize: 12, lineHeight:14, fontWeight: '500', opacity: 0.75}]}>Import an existing wallet</Text>
+                    <Text style={[styles.btnText, { fontSize: 12, lineHeight: 14, fontWeight: '500', opacity: 0.75 }]}>Import an existing wallet</Text>
                 </View>
             </TouchableOpacity>
         </SafeAreaView>

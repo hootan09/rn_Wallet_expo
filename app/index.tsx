@@ -51,15 +51,20 @@ const WalletSetup = () => {
           <View style={styles.contentWrapper}>
             <Text style={styles.titleText}>Get Started with Ease</Text>
             <Text style={styles.subtitleText}>Secure your financial future with a few easy steps. Your decentralized wallet awaits.</Text>
-            
-            <TouchableOpacity style={styles.btnWrapper} onPress={()=> router.navigate('/createWallet')}>
-              <Ionicons name="wallet-outline" size={24} color={Colors.light.white} />
-              <Text style={styles.btnText}>Create Wallet</Text>
+
+            <TouchableOpacity style={styles.btnWrapper} onPress={() => router.navigate('/createWallet')}>
+              <LinearGradient
+                style={{ flexDirection: 'row', gap:8, width: '100%', height: '100%', borderRadius: 12, justifyContent: 'center', alignItems: 'center' }}
+                colors={Colors.light.secondaryLinearGradient}
+              >
+                <Ionicons name="wallet-outline" size={24} color={Colors.light.white} />
+                <Text style={styles.btnText}>Create Wallet</Text>
+              </LinearGradient>
             </TouchableOpacity>
 
             <View style={styles.importwalletWrapper}>
               <Text style={styles.importwalletText}>Got a wallet?</Text>
-              <TouchableOpacity onPress={()=> router.navigate('/importWallet')}>
+              <TouchableOpacity onPress={() => router.navigate('/importWallet')}>
                 <Text style={styles.importwalletText}>Let's import it</Text>
               </TouchableOpacity>
             </View>
