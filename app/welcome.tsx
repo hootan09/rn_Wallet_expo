@@ -51,7 +51,7 @@ const Welcome = () => {
             <Text style={styles.titleText}>Welcome Aboard!</Text>
             <Text style={styles.subtitleText}>Your new digital wallet is ready! Dive into securing and exploring your financial future. Your crypto journey starts now.</Text>
 
-            <TouchableOpacity style={styles.btnWrapper} onPress={() => router.navigate('/')}>
+            <TouchableOpacity style={styles.btnWrapper} onPress={() => router.navigate('/wallet')}>
               <LinearGradient
                 style={{ flexDirection: 'row', gap: 8, width: '100%', height: '100%', borderRadius: 12, justifyContent: 'center', alignItems: 'center' }}
                 colors={Colors.light.secondaryLinearGradient}

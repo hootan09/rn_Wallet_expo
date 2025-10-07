@@ -3,13 +3,32 @@ import FontAwesome5 from '@expo/vector-icons/FontAwesome5'
 import { LinearGradient } from 'expo-linear-gradient'
 import { useRouter } from 'expo-router'
 import React, { useState } from 'react'
-import { StyleSheet, Text, TextInput, TouchableOpacity, View } from 'react-native'
+import { ActivityIndicator, StyleSheet, Text, TextInput, TouchableOpacity, View } from 'react-native'
 import { SafeAreaView } from 'react-native-safe-area-context'
 
 const Recovery = () => {
     const router = useRouter();
 
     const [text, setText] = useState("")
+    const [loading, setLoading] = useState(false);
+    const [notifyTexts, setNotifyTexts] = useState({
+        title: 'Hang tight!',
+        desc: "We're fetching your wallet details..."
+    })
+
+    const onVerifyRecoveryPress = () => {
+        setLoading(true);
+        setTimeout(() => {
+            setLoading(false);
+            router.navigate('/welcome');
+        }, 15000);
+        setTimeout(() => {
+            setNotifyTexts({
+                title: 'Almost there!',
+                desc: 'Syncing with the blockchain...'
+            })
+        }, 7000);
+    }
 
     return (
         <SafeAreaView style={styles.container}>
@@ -34,13 +53,23 @@ const Recovery = () => {
                 style={styles.textInput}
             />
 
+            {loading &&
+                <View style={styles.notifyWrapper}>
+                    <Text style={[styles.subTitleText, {marginTop: 5}]}>{notifyTexts.title}</Text>
+                    <Text style={[styles.subTitleText, {marginTop: 1}]}>{notifyTexts.desc}</Text>
+                </View>}
 
-            <TouchableOpacity style={styles.saveBtnWrapper} onPress={() => { }}>
+
+            <TouchableOpacity style={styles.saveBtnWrapper} onPress={onVerifyRecoveryPress}>
                 <LinearGradient
                     style={{ width: '100%', height: '100%', borderRadius: 12, justifyContent: 'center', alignItems: 'center' }}
                     colors={Colors.light.primaryLinearGradient}
                 >
-                    <Text style={styles.copyBtnText}>Verify seed phrase</Text>
+                    {loading ?
+                        <ActivityIndicator size={'large'} color={Colors.light.white} />
+                        :
+                        <Text style={styles.copyBtnText}>Verify seed phrase</Text>
+                    }
                 </LinearGradient>
             </TouchableOpacity>
         </SafeAreaView>
@@ -111,5 +140,16 @@ const styles = StyleSheet.create({
         color: Colors.light.white,
         textAlignVertical: 'center',
         padding: 20
+    },
+    notifyWrapper: {
+        backgroundColor: '#4f4979ff',
+        paddingVertical: 20,
+        position: 'absolute',
+        bottom: 120,
+        alignSelf: 'center',
+        width: '100%',
+        borderRadius: 15,
+        borderColor: '#837abeff',
+        borderWidth: 1.5,
     }
 })

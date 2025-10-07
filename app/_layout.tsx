@@ -13,6 +13,7 @@ export default function RootLayout() {
         <Stack.Screen name="welcome" options={{ headerShown: false }} />
         <Stack.Screen name="importWallet" options={{ headerShown: false }} />
         <Stack.Screen name="recovery" options={{ headerShown: false }} />
+        <Stack.Screen name="wallet" options={{ headerShown: false }} />
       </Stack>
       <StatusBar style="light" />
     </>
