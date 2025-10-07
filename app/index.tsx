@@ -59,7 +59,7 @@ const WalletSetup = () => {
 
             <View style={styles.importwalletWrapper}>
               <Text style={styles.importwalletText}>Got a wallet?</Text>
-              <TouchableOpacity>
+              <TouchableOpacity onPress={()=> router.navigate('/importWallet')}>
                 <Text style={styles.importwalletText}>Let's import it</Text>
               </TouchableOpacity>
             </View>
