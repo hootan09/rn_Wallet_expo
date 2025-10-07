@@ -27,7 +27,6 @@ const ImportWallet = () => {
                 <Text style={styles.subTitleText}>Import an existing wallet with your secret phrase or with your private key</Text>
             </View>
 
-
             <TouchableOpacity style={styles.btnWrapper} onPress={() => router.navigate('/recovery')}>
                 <View style={styles.iconBtnWrapper}>
                     <MaterialIcons name="content-paste-go" size={20} color={Colors.light.white} />

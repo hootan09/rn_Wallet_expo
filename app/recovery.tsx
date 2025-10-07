@@ -2,12 +2,14 @@ import { Colors, Fonts } from '@/constants/theme'
 import FontAwesome5 from '@expo/vector-icons/FontAwesome5'
 import { LinearGradient } from 'expo-linear-gradient'
 import { useRouter } from 'expo-router'
-import React from 'react'
-import { StyleSheet, Text, TouchableOpacity, View } from 'react-native'
+import React, { useState } from 'react'
+import { StyleSheet, Text, TextInput, TouchableOpacity, View } from 'react-native'
 import { SafeAreaView } from 'react-native-safe-area-context'
 
 const Recovery = () => {
     const router = useRouter();
+
+    const [text, setText] = useState("")
 
     return (
         <SafeAreaView style={styles.container}>
@@ -20,10 +22,22 @@ const Recovery = () => {
                 <Text style={styles.subTitleText}>Start the process to restore your wallet by entering your 12 or 24-word recovery phrase below.</Text>
             </View>
 
+            <TextInput
+                editable
+                multiline
+                numberOfLines={4}
+                // maxLength={40}
+                placeholder='Enter your seed phrase'
+                placeholderTextColor={Colors.light.grey}
+                onChangeText={text => setText(text)}
+                value={text}
+                style={styles.textInput}
+            />
+
 
             <TouchableOpacity style={styles.saveBtnWrapper} onPress={() => { }}>
                 <LinearGradient
-                    style={{width: '100%', height: '100%', borderRadius: 12, justifyContent: 'center', alignItems: 'center'}}
+                    style={{ width: '100%', height: '100%', borderRadius: 12, justifyContent: 'center', alignItems: 'center' }}
                     colors={Colors.light.primaryLinearGradient}
                 >
                     <Text style={styles.copyBtnText}>Verify seed phrase</Text>
@@ -86,4 +100,16 @@ const styles = StyleSheet.create({
         backgroundColor: Colors.light.primary,
         borderRadius: 12,
     },
+    textInput: {
+        marginTop: 60,
+        minHeight: 50,
+        marginHorizontal: 20,
+        backgroundColor: Colors.light.dark,
+        borderWidth: 1,
+        borderColor: Colors.light.grey,
+        borderRadius: 20,
+        color: Colors.light.white,
+        textAlignVertical: 'center',
+        padding: 20
+    }
 })
