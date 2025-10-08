@@ -69,3 +69,28 @@ console.log('ETH address :', hdNode.address);   // 0x...
 console.log('ETH privKey :', hdNode.privateKey); // 0x...
 ```
 
+```js
+// XRP
+
+// npm install ripple-keypairs  # official Ripple helper
+const rippleKeypairs = require('ripple-keypairs');
+
+const bip32Factory = bip32.BIP32Factory(ecc);
+
+// 2. derive first XRP account  (44'/144'/0'/0/0)
+const child = root.derivePath("m/44'/144'/0'/0/0");
+const privKey = child.privateKey;        // 32-byte scalar
+const pubKey  = child.publicKey;         // 33-byte compressed
+
+// 3. ripple-keypairs does the Ripple-specific hashing / base-58 for us
+const keypair = {
+  privateKey: privKey.toString('hex').toUpperCase(),
+  publicKey:  pubKey.toString('hex').toUpperCase()
+};
+
+const xrpAddress = rippleKeypairs.deriveAddress(keypair.publicKey);
+const xrpSecret  = rippleKeypairs.deriveKeypair(keypair.privateKey).privateKey; // sXXX...
+
+console.log('XRP address :', xrpAddress); // r9cZA...
+console.log('XRP secret  :', xrpSecret);  // sEdT...
+```
