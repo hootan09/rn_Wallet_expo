@@ -28,14 +28,14 @@ const CreateWallet = () => {
 
     useEffect(() => {
       const createdPhraseList = generateMnemonicList();
-      console.log(createdPhraseList.join(' '));
+      console.log('Phrase:' ,createdPhraseList.join(' '));
     //   console.log(validateMnemonicText(createdPhrase.join(' ')));
     //   const entropy = mnemonicTextToEntropyText(createdPhrase.join(' '))
     //   console.log(entropy);
     //   console.log(entropyTextToMnemonicText(entropy));      
       setPhrase(createdPhraseList);
 
-      const seedBuffer = mnemonicTextToSeed(createdPhraseList.join(' '));      
+      const seedBuffer = mnemonicTextToSeed(createdPhraseList.join(' '));
       getAddressFromSeed(seedBuffer);
       
     }, [])
