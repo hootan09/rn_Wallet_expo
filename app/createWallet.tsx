@@ -1,6 +1,6 @@
 import PhraseItemComponent from '@/components/PhraseItemComponent'
 import { Colors, Fonts } from '@/constants/theme'
-import { generateMnemonicList } from '@/utils/utils'
+import { generateMnemonicList, getAddressFromSeed, mnemonicTextToSeed } from '@/utils/utils'
 import FontAwesome5 from '@expo/vector-icons/FontAwesome5'
 import Ionicons from '@expo/vector-icons/Ionicons'
 import * as Clipboard from 'expo-clipboard'
@@ -27,15 +27,17 @@ const CreateWallet = () => {
     // };
 
     useEffect(() => {
-      const createdPhrase = generateMnemonicList();
-    //   console.log(createdPhrase);
+      const createdPhraseList = generateMnemonicList();
+      console.log(createdPhraseList.join(' '));
     //   console.log(validateMnemonicText(createdPhrase.join(' ')));
-
     //   const entropy = mnemonicTextToEntropyText(createdPhrase.join(' '))
     //   console.log(entropy);
-    //   console.log(entropyTextToMnemonicText(entropy));
+    //   console.log(entropyTextToMnemonicText(entropy));      
+      setPhrase(createdPhraseList);
+
+      const seedBuffer = mnemonicTextToSeed(createdPhraseList.join(' '));      
+      getAddressFromSeed(seedBuffer);
       
-      setPhrase(createdPhrase);
     }, [])
     
     return (

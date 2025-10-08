@@ -1,8 +1,9 @@
 global.Buffer = require('buffer').Buffer;
 
-import { entropyToMnemonic, generateMnemonic, mnemonicToEntropy, validateMnemonic } from 'bip39';
+import ecc from '@bitcoinerlab/secp256k1';
+import { BIP32Factory } from 'bip32';
+import { entropyToMnemonic, generateMnemonic, mnemonicToEntropy, mnemonicToSeedSync, validateMnemonic } from 'bip39';
 import * as Crypto from 'expo-crypto';
-
 export function generateMnemonicList(): string[] {
     // 128 bits of entropy → 12 words
     const strength = 128;
@@ -21,10 +22,36 @@ export function validateMnemonicText(text = ''): boolean {
     return validateMnemonic(text)
 }
 
-export function entropyTextToMnemonicText(text =''){
+export function entropyTextToMnemonicText(text = '') {
     return entropyToMnemonic(text)
 }
 
-export function mnemonicTextToEntropyText(text = ''){
+export function mnemonicTextToEntropyText(text = '') {
     return mnemonicToEntropy(text);
+}
+
+export function mnemonicTextToSeed(text = '') {
+    let seed = mnemonicToSeedSync(text)//.toString('hex');
+    return seed;
+}
+
+export function getAddressFromSeed(seed: any) {
+    const bip32 = BIP32Factory(ecc);
+    const root = bip32.fromSeed(seed);
+    console.log('Master private key :', root.toBase58());
+
+    for (let i = 0; i < 3; i++) {
+        const path = `m/44'/0'/0'/0/${i}`;
+        const child = root.derivePath(path);
+
+        /* 5. private key → WIF */
+        const wif = child.toWIF();
+        console.log(`\nPath      : ${path} \nWIF       : ${wif}`);
+        console.log();
+
+        /* 6. public key → P2WPKH (bech32) address */
+        // const pubkey = child.publicKey;
+        // const { address } = bitcoin.payments.p2wpkh({ pubkey, 'mainnet' });
+        // console.log('Address   :', address);
+    }
 }
