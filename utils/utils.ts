@@ -45,7 +45,7 @@ export function getAddressFromSeed(seed: any) {
     console.log('Master private key :', root.toBase58());
 
     for (let i = 0; i < 3; i++) {
-        const path = `m/44'/0'/0'/0/${i}`;
+        const path = `m/84'/0'/0'/0/${i}`;
         const child = root.derivePath(path);
 
         /* 5. private key → WIF */
