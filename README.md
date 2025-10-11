@@ -20,7 +20,4 @@ $ npm start
 # press a or i for openning simulator or use expo go with QRcode
 ```
 
-<video width="460" height="480" controls>
-  <source src="assets/images/vid.mp4" type="video/mp4">
-  Your browser does not support the video tag.
-</video>
+![](assets/images/ezgif-3e78016efe4ed9.gif)
