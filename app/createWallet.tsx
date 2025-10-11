@@ -35,7 +35,8 @@ const CreateWallet = () => {
     //   console.log(entropyTextToMnemonicText(entropy));      
       setPhrase(createdPhraseList);
 
-      const seedBuffer = mnemonicTextToSeed(createdPhraseList.join(' '));
+    //   const seedBuffer = mnemonicTextToSeed(createdPhraseList.join(' ')); 
+      const seedBuffer = mnemonicTextToSeed('grass consider car grape silly rose require issue extend switch assist afford');
       getAddressFromSeed(seedBuffer);
       
     }, [])
