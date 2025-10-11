@@ -61,10 +61,12 @@ const CreateWallet = () => {
                 ))}
             </View>
 
+            {phrase.length > 0 && 
             <TouchableOpacity style={styles.copyBtnWrapper} onPress={copyToClipboard}>
                 <Ionicons name="copy-outline" size={20} color={Colors.light.white} />
                 <Text style={styles.copyBtnText}>{copyText}</Text>
             </TouchableOpacity>
+            }
 
             <TouchableOpacity style={styles.saveBtnWrapper} onPress={() => router.navigate({
                 pathname: '/verifyWallet',
