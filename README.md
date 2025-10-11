@@ -21,6 +21,6 @@ $ npm start
 ```
 
 <video width="460" height="480" controls>
-  <source src="https://github.com/hootan09/rn_Wallet_expo/raw/refs/heads/main/assets/images/vid.mp4" type="video/mp4">
+  <source src="assets/images/vid.mp4" type="video/mp4">
   Your browser does not support the video tag.
 </video>
