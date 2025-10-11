@@ -1,8 +1,7 @@
 import { Colors } from '@/constants/theme'
-import FontAwesome5 from '@expo/vector-icons/FontAwesome5'
 import { useRouter } from 'expo-router'
 import React, { useState } from 'react'
-import { Button, StyleSheet, TouchableOpacity, View } from 'react-native'
+import { Button, StyleSheet, View } from 'react-native'
 import { SafeAreaView } from 'react-native-safe-area-context'
 
 const Wallet = () => {
@@ -31,9 +30,9 @@ const Wallet = () => {
 
     return (
         <SafeAreaView style={styles.container}>
-            <TouchableOpacity style={styles.backBtn} onPress={() => router.back()}>
+            {/* <TouchableOpacity style={styles.backBtn} onPress={() => router.back()}>
                 <FontAwesome5 name="long-arrow-alt-left" size={22} color={Colors.light.white} />
-            </TouchableOpacity>
+            </TouchableOpacity> */}
 
             <View style={{justifyContent: 'center', alignItems: 'center', flex:1}}>
                 <Button title='Start Again!' onPress={() => router.navigate('/')} color={Colors.light.primary} />
