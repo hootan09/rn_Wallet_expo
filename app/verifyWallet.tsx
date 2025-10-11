@@ -44,7 +44,14 @@ const VerifyWallet = () => {
         if (verifyPhrase.join(',') == phrase) {
             router.navigate('/welcome');
         } else {
-            Alert.alert("Invalid Phrase!!", "", [], { userInterfaceStyle: 'dark' })
+            Alert.alert("Invalid Phrase!!", "", [
+                // {
+                //     text: 'Cancel',
+                //     onPress: () => console.log('Cancel Pressed'),
+                //     style: 'cancel',
+                // },
+                { text: 'OK', onPress: () => console.log('OK Pressed') },
+            ], { userInterfaceStyle: 'dark' })
         }
     }
     return (
