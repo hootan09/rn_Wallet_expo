@@ -20,4 +20,6 @@ $ npm start
 # press a or i for openning simulator or use expo go with QRcode
 ```
 
-<video src="assets/images/vid.mp4" width="460" height="480" controls></video>
+<video width="460" height="480" controls>
+  <source src="assets/images/vid.mp4" type="video/mp4">
+</video>
